@@ -1,5 +1,6 @@
 import {Component} from "react";
-import {RenderTable} from "../helperFunctions/RenderTable";
+import {renderTable} from "../helperfunction/RenderTable";
+import {createKey} from "../helperfunction/CreateKey";
 
 export default class TableBody extends Component {
 
@@ -12,8 +13,8 @@ export default class TableBody extends Component {
                 <tr key={d._id}>
                     <td>{index + 1}</td>
                     {columns.map(column =>
-                        <td key={column.path}>
-                            { RenderTable(d, column) }
+                        <td key={createKey(d, column)}>
+                            { renderTable(d, column) }
                         </td>
                     )}
                 </tr>

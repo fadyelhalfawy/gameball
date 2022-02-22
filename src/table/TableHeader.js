@@ -1,5 +1,5 @@
 import {Component} from "react";
-import {GetIconSort} from "../helperFunctions/GetIconSort";
+import {getIconSort} from "../helperfunction/GetIconSort";
 
 export default class TableHeader extends Component {
     render() {
@@ -13,10 +13,10 @@ export default class TableHeader extends Component {
                 { columns.map( column =>
                     <th
                         className="clickable"
-                        key={column.path}
+                        key={column.path || column.key}
                         onClick={() => onSort(column.path)}
                     >
-                        {column.label} {GetIconSort(column, sortColumn)}
+                        {column.label} {getIconSort(column, sortColumn)}
                     </th>
                 )}
             </tr>
