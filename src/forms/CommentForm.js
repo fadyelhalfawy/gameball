@@ -1,7 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./Form";
-import {addComment, getComment} from "../service/CommentsService";
+import {addComment} from "../service/CommentsService";
+import {getTweet} from "../service/TweetsService";
 
 class CommentForm extends Form {
     state = {
@@ -62,14 +63,19 @@ class CommentForm extends Form {
     }
 
     async populateComment() {
-        const { history, match } = this.props;
+        const { history, match, user } = this.props;
 
         try {
             const commentId = match.params.id;
+            const tweetId = match.params.tweetId;
 
-            const {data: comment} = await getComment(commentId);
-            const mapData = this.mapToViewModel(comment);
-            this.setState({ data: mapData });
+
+            if (commentId === "new") {
+                const {data: tweet} = await getTweet(tweetId);
+                const mapData = this.mapToViewModel(tweet, user);
+                this.setState({ data: mapData });
+            }
+            else return;
         }
         catch (e) {
             if (e.response && e.response.status === 404)
@@ -77,12 +83,12 @@ class CommentForm extends Form {
         }
     };
 
-    mapToViewModel(comment) {
+    mapToViewModel(comment, user) {
         return {
-            tweet: comment.tweet.tweet,
-            userTweeted: comment.tweet.user.name,
+            tweet: comment.tweet,
+            userTweeted: comment.user.name,
             comment: "",
-            userCommenter: comment.userCommenter.name
+            userCommenter: user
         };
     }
 
