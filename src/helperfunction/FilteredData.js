@@ -1,6 +1,5 @@
 export let filteredData = (allData, searchQuery, number) => {
     let data = allData;
-    console.log(data.user);
 
     if (searchQuery && number === 0) data = allData.filter(d => d.user.name.toLowerCase().startsWith(searchQuery.toLowerCase()));
 
