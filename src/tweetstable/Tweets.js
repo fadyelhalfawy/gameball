@@ -1,5 +1,4 @@
 import {Component} from "react";
-import Joi from "joi-browser";
 import TweetsTable from "./TweetsTable";
 import SearchBoxForm from "../components/SearchBox";
 import Pagination from "../components/Pagination";
@@ -12,18 +11,13 @@ export default class Tweets extends Component {
         searchQuery: "",
         pageSize: 5,
         currentPage: 1,
-        sortColumn: {path: "name", order: 'asc'},
+        sortColumn: {path: "user.name", order: 'asc'},
         data: {
             name: "",
             tweet: "",
             date: ""
         },
         errors: {}
-    };
-
-    schema = {
-        name: Joi.string().label("Writer"),
-        tweet: Joi.string().label("Tweet")
     };
 
     async componentDidMount() {
@@ -70,8 +64,12 @@ export default class Tweets extends Component {
     };
 
     handleComment = tweet => {
-        const {tweets} = this.state;
+        const { tweets } = this.state;
+        const { history } = this.props;
         const tweetsFilter = tweets.filter(t => t._id === tweet._id);
+        const getTweetId = tweetsFilter[0]._id;
+
+        history.push("/comments/new/" + getTweetId);
     }
     
 }

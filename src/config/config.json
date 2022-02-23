@@ -1,3 +1,4 @@
 {
-  "tweetsPath": "http://localhost:3900/tweets"
+  "tweetsPath": "http://localhost:3900/tweets",
+  "commentsPath": "http://localhost:3900/comments"
 }
