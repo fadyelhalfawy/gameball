@@ -8,7 +8,7 @@ class TweetForm extends Form {
         data: {
             tweet: "",
             userId: "",
-            userName: ""
+            name: ""
         },
         errors: {}
     }
@@ -20,7 +20,7 @@ class TweetForm extends Form {
             .required()
             .label('Tweet'),
 
-        userName: Joi
+        name: Joi
             .string()
             .required()
             .label('UserName')
@@ -38,7 +38,7 @@ class TweetForm extends Form {
 
                 <form onSubmit={this.handleSubmit}>
                     {this.renderFormInput("tweet", "Tweet", 'Tweet')}
-                    {this.renderFormInput("userName", "Name", "Name")}
+                    {this.renderFormInput("name", "Name", "Name")}
 
                     <button className={"btn btn-outline-success"}>
                         Add Tweet
@@ -50,10 +50,10 @@ class TweetForm extends Form {
     }
 
     async populateTweet() {
-        const { history, user, userId } = this.props;
+        const { history, user } = this.props;
 
         try {
-            const mapData = this.mapToViewModel(user, userId);
+            const mapData = this.mapToViewModel(user.name, user._id);
             this.setState({ data: mapData });
         }
         catch (e) {
@@ -66,7 +66,7 @@ class TweetForm extends Form {
         return {
             tweet: "",
             userId: userId,
-            userName: user
+            name: user
         };
     }
 
