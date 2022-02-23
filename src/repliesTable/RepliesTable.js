@@ -16,8 +16,8 @@ export default class RepliesTable extends Component {
     };
 
     columns = [
-        { path: "tweet.tweet", label: "Tweet"},
-        { path: "tweet.user.name", label: "UserTweeted"},
+        { path: "comment.tweet.tweet", label: "Tweet"},
+        { path: "comment.tweet.user.name", label: "UserTweeted"},
         { path: "comment.comment", label: "Comment"},
         { path: "comment.userCommenter.name", label: "Commenter"},
         { path: "reply", label: "Reply"},
