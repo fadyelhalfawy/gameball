@@ -15,9 +15,14 @@ Axios.interceptors.response.use(null, error => {
 });
 //------------------------------------------------------------------------------------
 
+function setJwt(jwt) {
+    Axios.defaults.headers.common["x-auth-token"] = jwt;
+}
+
 const http = {
     get: Axios.get,
-    post: Axios.post
+    post: Axios.post,
+    setJwt
 };
 
 export default http;
