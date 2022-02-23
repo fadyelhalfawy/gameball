@@ -92,20 +92,11 @@ export default class ReplyForm extends Form {
         const { history, match, user } = this.props;
 
         try {
-            const replyId = match.params.id;
-            const tweetId = match.params.tweetId;
-            const commentId = match.params.commentId;
+            const commentId = match.params.id;
+            const {data: comment} = await getComment(commentId);
 
-            if (replyId === "new") {
-                const {data: tweet} = await getTweet(tweetId);
-
-
-                const {data: comment} = await getComment(commentId);
-
-                const mapData = this.mapToViewModel(tweet, comment, user);
-                this.setState({ data: mapData });
-            }
-            else return;
+            const mapData = this.mapToViewModel(comment, user);
+            this.setState({ data: mapData });
         }
         catch (e) {
             if (e.response && e.response.status === 404)
@@ -113,16 +104,17 @@ export default class ReplyForm extends Form {
         }
     };
 
-    mapToViewModel(tweet, comment, user) {
+    mapToViewModel(comment, user) {
+        console.log(comment);
         return {
-            tweetId: tweet._id,
-            tweet: tweet.tweet,
-            userTweetedId: tweet.user._id,
-            userTweeted: tweet.user.name,
+            tweetId: comment.tweet._id,
+            tweet: comment.tweet.tweet,
+            userTweetedId: comment.tweet.user._id,
+            userTweeted: comment.tweet.user.name,
             commentId: comment._id,
             comment: comment.comment,
-            userCommenter: comment.user.name,
-            userCommenterId: comment.user._id,
+            userCommenter: comment.userCommenter.name,
+            userCommenterId: comment.userCommenter._id,
             reply: "",
             userReplier: user.name,
             replierId: user._id
