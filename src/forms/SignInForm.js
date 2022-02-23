@@ -3,6 +3,9 @@ import Joi from "joi-browser";
 import Form from "./Form";
 import {getUsers} from "../service/UsersService";
 import authService from "../service/AuthService";
+import signInCss from "../module/signIn.module.css";
+import image from "../image/1.jpg";
+import {FaTwitterSquare} from "react-icons/fa";
 
 export default class SignInForm extends Form {
     state = {
@@ -29,7 +32,17 @@ export default class SignInForm extends Form {
         return (
             <React.Fragment>
 
-                <h1>Sign In!</h1>
+                <h1 className={signInCss.title}>Sign In!</h1>
+
+                <article className={signInCss.review}>
+
+                    <div className={signInCss["img-container"]}>
+                        <img src={image} alt={"twitter-image"} className={signInCss["person-img"]} />
+                        <span className={signInCss["quote-icon"]}>
+                            <FaTwitterSquare />
+                        </span>
+                    </div>
+                </article>
 
                 <form onSubmit={this.handleSubmit}>
                     {this.renderSelect("name", "Name", users)}
