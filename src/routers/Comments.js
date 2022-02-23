@@ -71,6 +71,6 @@ export default class Comments extends Component{
             const commentsFilter = comments.filter(c => c._id === comment._id);
             const getCommentId = commentsFilter[0]._id;
 
-            history.push("/replies/new/" + commentsFilter[0].tweet._id + "/" + getCommentId);
+            history.push("/replies/" + getCommentId);
         }
 }
