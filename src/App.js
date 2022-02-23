@@ -8,26 +8,37 @@ import {NotFound} from "./routers/NotFound";
 import CommentForm from "./forms/CommentForm";
 import TweetForm from "./forms/TweetForm";
 import SignInForm from "./forms/SignInForm";
+import authService from "./service/AuthService";
+import LogOutForm from "./forms/LogOutForm";
 
 class App extends Component {
 
-    state = {}
+    state = {user: ""}
+
+    componentDidMount() {
+        const user = authService.getCurrentUser();
+        if (!user) this.setState({user: ""})
+        this.setState({ user });
+    }
 
     render() {
+        const { user } = this.state;
+
         return (
             <React.Fragment>
 
-                <NavBar user={"Fady Halfawy"}/>
+                <NavBar user={user}/>
 
                 <main className={"container"}>
                     <Switch>
                         <Route path={"/sign-in"} component={SignInForm}/>
                         {/*<Route path={"/home"} component={Home}/>*/}
-                        <Route path={"/tweets/:id"} render={props => <TweetForm user={"Fady"} userId={"6214399bd7fd2e3bd8038ebb"} {...props}/>}/>
+                        <Route path={"/tweets/:id"} render={props => <TweetForm user={user} {...props}/>}/>
                         <Route path={"/tweets"} component={Tweets}/>
-                        <Route path={"/comments/:id/:tweetId"} render={props => <CommentForm user={"Fady"} {...props}/>}/>
+                        <Route path={"/comments/:id/:tweetId"} render={props => <CommentForm user={user} {...props}/>}/>
                         <Route path={"/comments"} component={Comments}/>
                         <Route path={"/replies"} component={Replies}/>
+                        <Route path={"/logout"} component={LogOutForm}/>
                         {/*<Route path={"/about-us"} component={About}/>*/}
                         <Route path={"/notfound"} to={NotFound} />
                         <Redirect from={"/"} exact to={"/tweets"} />

@@ -2,16 +2,17 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./Form";
 import {getUsers} from "../service/UsersService";
+import authService from "../service/AuthService";
 
 export default class SignInForm extends Form {
     state = {
         users: [],
-        data: {userName: ""},
+        data: {name: ""},
         errors: {}
     }
 
     schema = {
-        userName: Joi
+        name: Joi
             .string()
             .required()
             .label('Name')
@@ -31,7 +32,7 @@ export default class SignInForm extends Form {
                 <h1>Sign In!</h1>
 
                 <form onSubmit={this.handleSubmit}>
-                    {this.renderSelect("userName", "Name", users)}
+                    {this.renderSelect("name", "Name", users)}
                     <button className={"btn btn-outline-success"}>
                         Login
                     </button>
@@ -42,15 +43,18 @@ export default class SignInForm extends Form {
         );
     }
 
-    doSubmit = () => {
-        const {errors } = this.state;
-        const { history } = this.props;
+    doSubmit = async () => {
+        const { data, errors } = this.state;
+        const { location } = this.props;
         try {
-            history.push("/tweets");
+            await authService.login(data.name);
+            const { state } = location;
+
+            window.location = state ? state.from.pathname : "/tweets";
         } catch (e) {
             if (e.response && e.response.status === 400) {
                 const error = {...errors};
-                error.data = e.response.data;
+                error.data.name = e.response.data;
                 this.setState({errors: error});
             }
         }
