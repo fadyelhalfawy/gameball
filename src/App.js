@@ -6,6 +6,7 @@ import Comments from "./routers/Comments";
 import {Replies} from "./routers/Replys";
 import {NotFound} from "./routers/NotFound";
 import CommentForm from "./forms/CommentForm";
+import TweetForm from "./forms/TweetForm";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Switch>
                     {/*<Route path={"/sign-in"} component={SignIn}/>*/}
                     {/*<Route path={"/home"} component={Home}/>*/}
+                    <Route path={"/tweets/:id"} render={props => <TweetForm user={"Fady"} userId={"6214399bd7fd2e3bd8038ebb"} {...props}/>}/>
                     <Route path={"/tweets"} component={Tweets}/>
                     <Route path={"/comments/:id/:tweetId"} render={props => <CommentForm user={"Fady"} {...props}/>}/>
                     <Route path={"/comments"} component={Comments}/>
