@@ -29,10 +29,10 @@ function logout() {
     localStorage.removeItem(tokenKey);
 }
 
-const auth = {
+const authService = {
     login,
     getCurrentUser,
     logout
 }
 
-export default auth;
+export default authService;
