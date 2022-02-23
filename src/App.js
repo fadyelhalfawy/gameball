@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Redirect, Switch, Route} from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Tweets from "./tweetstable/Tweets";
+import Tweets from "./routers/Tweets";
 import Comments from "./routers/Comments";
 import {Replies} from "./routers/Replys";
 import {NotFound} from "./routers/NotFound";
