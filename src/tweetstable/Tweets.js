@@ -5,6 +5,7 @@ import SearchBoxForm from "../components/SearchBox";
 import Pagination from "../components/Pagination";
 import {getPageData} from "../helperfunction/GetPageData";
 import {getTweets} from "../service/TweetsService";
+import {Comments} from "../routers/Comments";
 
 export default class Tweets extends Component {
     state = {
@@ -71,7 +72,9 @@ export default class Tweets extends Component {
 
     handleComment = tweet => {
         const {tweets} = this.state;
+        const { history } = this.props;
         const tweetsFilter = tweets.filter(t => t._id === tweet._id);
+        history.push("/comments");
     }
     
 }
