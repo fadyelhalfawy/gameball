@@ -65,7 +65,12 @@ export default class Comments extends Component{
             this.setState({sortColumn});
         };
 
-        handleReply = reply => {
-            console.log(reply);
+        handleReply = comment => {
+            const { comments } = this.state;
+            const { history } = this.props;
+            const commentsFilter = comments.filter(c => c._id === comment._id);
+            const getCommentId = commentsFilter[0]._id;
+
+            history.push("/replies/new/" + commentsFilter[0].tweet._id + "/" + getCommentId);
         }
 }
