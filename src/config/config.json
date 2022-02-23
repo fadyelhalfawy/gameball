@@ -1,4 +1,5 @@
 {
+  "usersPath": "http://localhost:3900/users",
   "tweetsPath": "http://localhost:3900/tweets",
   "commentsPath": "http://localhost:3900/comments"
 }

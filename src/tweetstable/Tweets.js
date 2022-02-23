@@ -47,6 +47,13 @@ export default class Tweets extends Component {
                     currentPage={currentPage}
                     onPageChange={this.handlePageChange}
                 />
+
+                <button
+                    className={"btn btn-outline-success"}
+                    onClick={this.handleAddTweet}
+                >
+                    New Tweet
+                </button>
             </div>
         )
     }
@@ -70,6 +77,11 @@ export default class Tweets extends Component {
         const getTweetId = tweetsFilter[0]._id;
 
         history.push("/comments/new/" + getTweetId);
+    }
+
+    handleAddTweet = () => {
+        const { history } = this.props;
+        history.push('/tweets/new');
     }
     
 }

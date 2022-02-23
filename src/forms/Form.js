@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import InputForm from "./InputForm";
 import Joi from "joi-browser";
+import SelectForm from "./SelectForm";
 
 class Form extends Component {
     state = {
@@ -28,14 +29,14 @@ class Form extends Component {
         return error ? error.details[0].message : null
     }
 
-    // handleSubmit = e => {
-    //     e.preventDefault();
-    //     const errors = this.validate();
-    //     this.setState({errors: errors || {} });
-    //     if (errors) return;
-    //
-    //     this.doSubmit();
-    // };
+    handleSubmit = e => {
+        e.preventDefault();
+        const errors = this.validate();
+        this.setState({errors: errors || {} });
+        if (errors) return;
+
+        this.doSubmit();
+    };
 
     handleChange = ({ currentTarget: target }) => {
         const { data, errors } = this.state;
@@ -48,16 +49,6 @@ class Form extends Component {
         getData[target.name] = target.value;
         this.setState({ data: getData, errors: getErrors });
     }
-
-    // handleClickButton = (history, path, label) => {
-    //     if (path === "/movies") {
-    //         const errors = this.validate();
-    //         this.setState({errors: errors || {}});
-    //         if (errors) return;
-    //     }
-    //
-    //     HandleButtonTransfer(history, path, label);
-    // };
 
     renderFormInput(name, label, placeHolder, type="text") {
         const { data, errors } = this.state;
@@ -74,6 +65,22 @@ class Form extends Component {
             />
         );
     }
+
+    renderSelect(name, label, options) {
+        const {data, errors} = this.state;
+
+        return(
+            <SelectForm
+                name={name}
+                value={data[name]}
+                label={label}
+                onChange={this.handleChange}
+                options={options}
+                error={errors[name]}
+            />
+        );
+    }
+
 }
 
 export default Form;
