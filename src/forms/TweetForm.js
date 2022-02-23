@@ -14,6 +14,9 @@ class TweetForm extends Form {
     }
 
     schema = {
+        userId: Joi
+            .string(),
+
         tweet: Joi
             .string()
             .max(140)
@@ -70,10 +73,9 @@ class TweetForm extends Form {
         };
     }
 
-    doSubmit = async () => {
+    doSubmit = async e => {
         const { data } = this.state;
         const { history } = this.props;
-
         await addTweet(data);
         return history.replace("/tweets");
     };
