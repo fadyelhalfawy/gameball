@@ -1,5 +1,5 @@
 import {Component} from "react";
-import TweetsTable from "./TweetsTable";
+import TweetsTable from "../tweetstable/TweetsTable";
 import SearchBoxForm from "../components/SearchBox";
 import Pagination from "../components/Pagination";
 import {getPageData} from "../helperfunction/GetPageData";
