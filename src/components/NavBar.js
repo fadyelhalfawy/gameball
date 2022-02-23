@@ -1,3 +1,4 @@
+import React from "react";
 import {Link} from "react-router-dom";
 import {NavLink} from "react-router-dom";
 
@@ -36,9 +37,14 @@ const NavBar = ({ user }) => {
                 }
 
                 {user && (
-                    <NavLink className="nav-item nav-link" to="/profile">
-                        {user}
-                    </NavLink>
+                    <React.Fragment>
+                        <NavLink className="nav-item nav-link" to="/profile">
+                            {user.name}
+                        </NavLink>
+                        <NavLink className="nav-item nav-link" to="/logout">
+                            Logout
+                        </NavLink>
+                    </React.Fragment>
                 )
                 }
             </div>
