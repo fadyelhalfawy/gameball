@@ -14,6 +14,12 @@ const NavBar = ({ user }) => {
                     <NavLink className="nav-item nav-link" to="/tweets">
                         Tweets
                     </NavLink>
+                    <NavLink className="nav-item nav-link" to="/comments">
+                        Comments
+                    </NavLink>
+                    <NavLink className="nav-item nav-link" to="/replies">
+                        Replies
+                    </NavLink>
                     <NavLink className="nav-item nav-link" to="/about-us">
                         About Us
                     </NavLink>
