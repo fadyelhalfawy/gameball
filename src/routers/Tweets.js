@@ -22,7 +22,7 @@ export default class Tweets extends Component {
 
     async componentDidMount() {
         const {data: tweets} = await getTweets();
-        this.setState({tweets});
+        this.setState({ tweets });
     };
 
     render() {
@@ -83,5 +83,5 @@ export default class Tweets extends Component {
         const { history } = this.props;
         history.push('/tweets/new');
     }
-    
+
 }
