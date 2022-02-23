@@ -33,7 +33,6 @@ class App extends Component {
                 <main className={"container"}>
                     <Switch>
                         <Route path={"/sign-in"} component={SignInForm}/>
-                        {/*<Route path={"/home"} component={Home}/>*/}
                         <Route path={"/tweets/:id"} render={props => <TweetForm user={user} {...props}/>}/>
                         <Route path={"/tweets"} component={Tweets}/>
                         <Route path={"/comments/:id/:tweetId"} render={props => <CommentForm user={user} {...props}/>}/>
@@ -41,9 +40,8 @@ class App extends Component {
                         <Route path={"/replies/:id/:tweetId/:commentId"} render={props => <ReplyForm user={user} {...props} />}/>
                         <Route path={"/replies"} component={Replies}/>
                         <Route path={"/logout"} component={LogOutForm}/>
-                        {/*<Route path={"/about-us"} component={About}/>*/}
                         <Route path={"/notfound"} to={NotFound} />
-                        <Redirect from={"/"} exact to={"/tweets"} />
+                        <Redirect from={"/"} exact to={"/sign-in"} />
                         <Redirect to={"/notfound"} />
                     </Switch>
 
