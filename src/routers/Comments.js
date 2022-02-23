@@ -1,5 +1,4 @@
 import {Component} from "react";
-import Joi from "joi-browser";
 import SearchBoxForm from "../components/SearchBox";
 import Pagination from "../components/Pagination";
 import {getPageData} from "../helperfunction/GetPageData";
@@ -12,7 +11,7 @@ export default class Comments extends Component{
             searchQuery: "",
             pageSize: 5,
             currentPage: 1,
-            sortColumn: {path: "name", order: 'asc'},
+            sortColumn: {path: 'tweet.user.name', order: 'asc'},
             data: {
                 tweet: "",
                 userTweeted: "",
@@ -21,11 +20,6 @@ export default class Comments extends Component{
                 date: ""
             },
             errors: {}
-        };
-
-        schema = {
-            name: Joi.string().label("Writer"),
-            tweet: Joi.string().label("Tweet")
         };
 
         async componentDidMount() {
