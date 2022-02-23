@@ -9,7 +9,7 @@ const SelectForm = ({ id, label, options, value, onChange, error, ...rest }) => 
             <select value={value} onChange={onChange} {...rest} className="custom-select" required>
                 <option value="" />
                 {options.map(option => (
-                    <option key={option._id} value={option._id}>
+                    <option key={option._id} value={option.name}>
                         {option.name}
                     </option>
                 ))}
