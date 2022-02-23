@@ -47,13 +47,13 @@ class CommentForm extends Form {
 
                 <h1>Comment Form</h1>
 
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     {this.renderFormInput("tweet", "Tweet", 'Tweet')}
                     {this.renderFormInput("userTweeted", "UserTweeted", "UserTweeted")}
                     {this.renderFormInput("comment", "Comment", "Comment")}
                     {this.renderFormInput("userCommenter", "Commenter", "Commenter")}
 
-                    <button className={"btn btn-outline-info"} onClick={this.doSubmit}>
+                    <button className={"btn btn-outline-info"}>
                         Comment
                     </button>
                 </form>
@@ -95,10 +95,6 @@ class CommentForm extends Form {
     doSubmit = async e => {
         const { data } = this.state;
         const { history } = this.props;
-        e.preventDefault();
-        const errors = this.validate();
-        this.setState({errors: errors || {} });
-        if (errors) return;
         await addComment(data);
         return history.replace("/comments");
     };

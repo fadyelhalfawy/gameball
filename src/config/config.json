@@ -2,5 +2,6 @@
   "usersPath": "http://localhost:3900/users",
   "tweetsPath": "http://localhost:3900/tweets",
   "commentsPath": "http://localhost:3900/comments",
+  "repliesPath": "http://localhost:3900/replies",
   "authPath": "http://localhost:3900/auth"
 }

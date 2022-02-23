@@ -30,8 +30,8 @@ const NavBar = ({ user }) => {
             </div>
             <div className="navbar-nav">
                 {!user && (
-                    <NavLink className="nav-item nav-link" to="/login">
-                        {"Login"}
+                    <NavLink className="nav-item nav-link" to="/sign-in">
+                        Login
                     </NavLink>
                 )
                 }
