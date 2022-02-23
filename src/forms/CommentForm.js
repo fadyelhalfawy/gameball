@@ -72,7 +72,7 @@ class CommentForm extends Form {
 
             if (commentId === "new") {
                 const {data: tweet} = await getTweet(tweetId);
-                const mapData = this.mapToViewModel(tweet, user);
+                const mapData = this.mapToViewModel(tweet, user.name);
                 this.setState({ data: mapData });
             }
             else return;
