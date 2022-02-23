@@ -9,9 +9,6 @@ const NavBar = ({ user }) => {
             <Link className="navbar-brand container" to="/">Twitter...</Link>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
-                    <NavLink className="nav-item nav-link" to="/home">
-                        Home
-                    </NavLink>
                     <NavLink className="nav-item nav-link" to="/tweets">
                         Tweets
                     </NavLink>
@@ -20,9 +17,6 @@ const NavBar = ({ user }) => {
                     </NavLink>
                     <NavLink className="nav-item nav-link" to="/replies">
                         Replies
-                    </NavLink>
-                    <NavLink className="nav-item nav-link" to="/about-us">
-                        About Us
                     </NavLink>
                 </div>
 
