@@ -10,6 +10,6 @@ export function addTweet(tweet) {
         tweet: tweet.tweet,
         user: {
             _id: tweet.userId,
-            name: tweet.userName
+            name: tweet.name
         }
     })};
