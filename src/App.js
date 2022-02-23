@@ -18,7 +18,7 @@ const App = () => {
                     {/*<Route path={"/sign-in"} component={SignIn}/>*/}
                     {/*<Route path={"/home"} component={Home}/>*/}
                     <Route path={"/tweets"} component={Tweets}/>
-                    <Route path={"/comments/:id"} component={CommentForm}/>
+                    <Route path={"/comments/:id/:tweetId"} render={props => <CommentForm user={"Fady"} {...props}/>}/>
                     <Route path={"/comments"} component={Comments}/>
                     <Route path={"/replies"} component={Replies}/>
                     {/*<Route path={"/about-us"} component={About}/>*/}
